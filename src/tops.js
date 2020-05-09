@@ -8,6 +8,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +45,7 @@ export default function Tops(props) {
                         <Grid container direction={"column"}>
                             {popular.map(( item) =>
                                 <Grid item>
-                                    <Button>
+                                    <Button component={Link} to={item.toLowerCase()}>
                                         <Typography>
                                             {item}
                                         </Typography>
@@ -56,12 +62,14 @@ export default function Tops(props) {
                         aria-controls="panel2a-content"
                         id="panel2a-header"
                     >
-                        <Typography className={classes.heading}>Most Expansive</Typography>
+                        <Typography className={classes.heading}>Most Expensive</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Typography>
-                            Mr. Gold 3K $
-                        </Typography>
+                        <Button component={Link} to='gold'>
+                            <Typography>
+                                Mr. Gold 3K $
+                            </Typography>
+                        </Button>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>

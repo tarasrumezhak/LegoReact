@@ -14,6 +14,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import {ReactComponent as RebelIcon} from "./icons/rebel.svg";
 import {ReactComponent as EvilIcon} from "./icons/evil2.svg";
 // import {green, red} from "@material-ui/core/colors";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -123,7 +129,7 @@ export default function Navigation(props) {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </div>
-                <LoginButton darkMode={darkMode}/>
+                <Link to='login'><LoginButton darkMode={darkMode}/></Link>
                 <DarkMode onClick={handleDark}/>
             </Toolbar>
         </AppBar>
