@@ -60,7 +60,7 @@ export default function Tops(props) {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
-                            Not yet
+                            Mr. Gold 3K $
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
