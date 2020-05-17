@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": "9",
+      "nfirst_ame": "max2",
+      "emai": "rum@gmail.com"
+    },
+    {
+      "id": "TdRqlM5"
+    },
+    {
+      "id": "Hs1KsOQ"
+    },
+    {
+      "id": "1gO15mb"
+    },
+    {
+      "firstName": "rtfre",
+      "lastName": "rterf",
+      "email": "qrt3req",
+      "password": "ergrtgwrtd",
+      "id": "pxr2XBR"
+    },
+    {
+      "id": "kF6BrYW"
+    }
+  ],
+  "figures": [
+    {
+      "id": 1,
+      "name": "Shower Guy",
+      "photo": "./images/shower.jpg",
+      "series": 19,
+      "price": 6.9
+    },
+    {
+      "id": 2,
+      "name": "Girl Hacker",
+      "photo": "./images/hacker.jpg",
+      "series": 19,
+      "price": 3.8
+    },
+    {
+      "id": 3,
+      "name": "Adventurer",
+      "photo": "./images/adventurer.png",
+      "series": 19,
+      "price": 2.8
+    },
+    {
+      "id": 4,
+      "name": "Player",
+      "photo": "./images/player.jpg",
+      "series": 19,
+      "price": 1.6
+    },
+    {
+      "id": 5,
+      "name": "Programmer",
+      "photo": "./images/programmer.jpg",
+      "series": 19,
+      "price": 5.8
+    },
+    {
+      "id": 6,
+      "name": "Brick Man",
+      "photo": "./images/minifigure.jpg",
+      "series": 19,
+      "price": 10
+    }
+  ]
+}

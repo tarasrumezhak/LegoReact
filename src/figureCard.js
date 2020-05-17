@@ -58,7 +58,7 @@ export default function FigureCard(props) {
                         style={{display: "flex"}}
                     />
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Series 19 LEGO Minifigure  - 6,90 € EUR
+                        Series {props.series} LEGO Minifigure  - {props.price} € EUR
                     </Typography>
                 </CardContent>
             </CardActionArea>

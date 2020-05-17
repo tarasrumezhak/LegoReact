@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -41,8 +41,50 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Register() {
+export default function Register(props) {
+    const useInput = initialValue => {
+        const [value, setValue] = useState(initialValue);
+
+        return {
+            value,
+            setValue,
+            reset: () => setValue(""),
+            bind: {
+                value,
+                onChange: event => {
+                    setValue(event.target.value);
+                }
+            }
+        };
+    };
+    // const [first_name, setFirst_name] = useState('');
+    const {value:firstName, bind:bindFirstName, reset:resetFirstName} = useInput('');
+    const {value:lastName, bind:bindLastName, reset:resetLastName} = useInput('');
+    const {value:email, bind:bindEmail, reset:resetEmail} = useInput('');
+    const {value:password, bind:bindPassword, reset:resetPassword} = useInput('');
+
     const classes = useStyles();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let state = {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password
+        };
+
+        fetch("http://localhost:3001/users", {
+            method: 'post',
+            body: JSON.stringify(state)
+        }).then(function (response) {
+            console.log(response);
+            console.log(state);
+            return response.json();
+        });
+
+        // resetFirstName();
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -54,7 +96,8 @@ export default function Register() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleSubmit} >
+                    {/*action='http://localhost:3001/users' method='post'*/}
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -66,6 +109,7 @@ export default function Register() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                {...bindFirstName}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -77,6 +121,7 @@ export default function Register() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
+                                {...bindLastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -88,6 +133,7 @@ export default function Register() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                {...bindEmail}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -100,14 +146,9 @@ export default function Register() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                {...bindPassword}
                             />
                         </Grid>
-                        {/*<Grid item xs={12}>*/}
-                        {/*    <FormControlLabel*/}
-                        {/*        control={<Checkbox value="allowExtraEmails" color="primary" />}*/}
-                        {/*        label="I want to receive inspiration, marketing promotions and updates via email."*/}
-                        {/*    />*/}
-                        {/*</Grid>*/}
                     </Grid>
                     <Button
                         type="submit"

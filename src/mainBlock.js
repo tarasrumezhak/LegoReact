@@ -32,22 +32,56 @@ const useStyles = makeStyles((theme) => ({
  }
 ));
 
-function BricksFeed() {
-    return(
-        <Grid container spacing={1} >
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/shower.jpg")} name="Shower Guy"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/hacker.jpg")} name="Girl Hacker"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/adventurer.png")} name="Adventurer"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/player.jpg")} name="Player"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/programmer.jpg")} name="Programmer"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/minifigure.jpg")} name="Brick Man"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/shower.jpg")} name="Shower Guy"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/shower.jpg")} name="Shower Guy"/></Grid>
-            <Grid item sm={12} md={6} lg={4}><FigureCard image={require("./images/shower.jpg")} name="Shower Guy"/></Grid>
-        </Grid>
-    )
 
+class BricksFeed extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            figures: []
+        };
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3001/figures")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        figures: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+    render() {
+        const { error, isLoaded, figures } = this.state;
+        console.log(this.state)
+        // alert(this.state.isLoaded);
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <Grid container spacing={1} >
+                    {figures.map(figure =>
+                        <Grid item sm={12} md={6} lg={4}><FigureCard image={figure.photo} name={figure.name} series={figure.series} price={figure.price}/></Grid>
+                    )}
+                </Grid>
+            );
+        }
+    }
 }
+
 
 export default function MainBlock() {
     const classes = useStyles();

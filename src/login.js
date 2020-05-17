@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -53,7 +53,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function LogIn() {
+export default function LogIn(props) {
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    // function responseHandler(response) {
+    //     alert(response.json());
+    // }
+    function handleLogin() {
+        let url = "http://localhost:3001/users";
+        let users;
+        fetch(url).then(res => res.json()).then(
+           (result) => {
+               users = result;
+               for (let i=0; i < users.length; i++) {
+
+               }
+
+           }
+        );
+        alert(users)
+    }
+
+
     const classes = useStyles();
 
     return (
@@ -61,9 +81,6 @@ export default function LogIn() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    {/*<LockOutlinedIcon />*/}
-                    {/*<AvatarIcon/>*/}
-                    {/*<SvgIcon component={BatmanIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: 45}} /> :*/}
                     <BatmanIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -92,25 +109,17 @@ export default function LogIn() {
                         id="password"
                         autoComplete="current-password"
                     />
-                    {/*<FormControlLabel*/}
-                    {/*    control={<Checkbox value="remember" color="primary" />}*/}
-                    {/*    label="Remember me"*/}
-                    {/*/>*/}
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        // onClick={handleLogin}
                     >
                         Log In
                     </Button>
                     <Grid container>
-                        {/*<Grid item xs>*/}
-                            {/*<Link href="#" variant="body2">*/}
-                            {/*    Forgot password?*/}
-                            {/*</Link>*/}
-                        {/*</Grid>*/}
                         <Grid item>
                             <Link to='register'>
                                 {"Don't have an account? Sign Up"}
