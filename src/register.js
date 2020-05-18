@@ -14,9 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {ReactComponent as GirlIcon} from "./icons/girl.svg";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
+    Redirect,
     Link
 } from "react-router-dom";
 
@@ -76,14 +74,18 @@ export default function Register(props) {
 
         fetch("http://localhost:3001/users", {
             method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(state)
         }).then(function (response) {
-            console.log(response);
-            console.log(state);
-            return response.json();
+            // console.log(response);
+            // console.log(state);
+            // return response.json();
+            if (response.status === 200) {
+              // return <Redirect to='login'/>
+            }
         });
-
-        // resetFirstName();
     };
 
     return (
@@ -150,6 +152,7 @@ export default function Register(props) {
                             />
                         </Grid>
                     </Grid>
+                    <Link to='login'>
                     <Button
                         type="submit"
                         fullWidth
@@ -159,6 +162,7 @@ export default function Register(props) {
                     >
                         Sign Up
                     </Button>
+                    </Link>
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link to='login'>

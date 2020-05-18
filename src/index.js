@@ -20,6 +20,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import FigureCard from "./figureCard";
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,6 +13,7 @@ import LogIn from "./login";
 import Register from "./register";
 import ProfileCard from "./profile";
 import HistoryCard from "./history";
+import FigurePage from "./figurePage";
 
 const useStyles = makeStyles((theme) => ({
         paper: {
@@ -65,7 +65,6 @@ class BricksFeed extends React.Component{
     render() {
         const { error, isLoaded, figures } = this.state;
         console.log(this.state)
-        // alert(this.state.isLoaded);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -91,12 +90,12 @@ export default function MainBlock() {
                 <Route exact path='/login' component={LogIn}/>
                 <Route exact path='/register' component={Register}/>
                 <Route exact path='/profile' component={ProfileCard}/>
-                {/*<Route exact path='/collect/${id}'><FigureCard image={require("./images/minifigure.jpg")} name={id}/></Route>*/}
+                <Route exact path='/collect/${id}'><FigureCard image={require("./images/minifigure.jpg")}/></Route>
                 <Route exact path='/collect' component={BricksFeed} />
-                <Route exact path='/gold'><FigureCard image={require("./images/gold.jpg")} name="Mr Gold"/></Route>
-                <Route exact path='/batman'><FigureCard image={require("./images/batman.jpg")} name="Batman"/></Route>
-                <Route exact path='/superman'><FigureCard image={require("./images/superman.jpg")} name="Superman"/></Route>
-                <Route exact path='/gorlum'><FigureCard image={require("./images/gorlum.jpg")} name="Gorlum"/></Route>
+                <Route exact path='/gold'><FigurePage image={require("./images/gold.jpg")} name="Mr Gold"/></Route>
+                <Route exact path='/batman'><FigurePage image={require("./images/batman.jpg")} name="Batman"/></Route>
+                <Route exact path='/superman'><FigurePage image={require("./images/superman.jpg")} name="Superman"/></Route>
+                <Route exact path='/gorlum'><FigurePage image={require("./images/gorlum.jpg")} name="Gorlum"/></Route>
                 <Route exact path='/history' component={HistoryCard} />
                 <Route exact path='/' component={BricksFeed} />
             </Switch>

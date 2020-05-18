@@ -54,24 +54,52 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LogIn(props) {
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    // function responseHandler(response) {
-    //     alert(response.json());
-    // }
-    function handleLogin() {
-        let url = "http://localhost:3001/users";
-        let users;
-        fetch(url).then(res => res.json()).then(
-           (result) => {
-               users = result;
-               for (let i=0; i < users.length; i++) {
+    const useInput = initialValue => {
+        const [value, setValue] = useState(initialValue);
 
-               }
+        return {
+            value,
+            setValue,
+            reset: () => setValue(""),
+            bind: {
+                value,
+                onChange: event => {
+                    setValue(event.target.value);
+                }
+            }
+        };
+    };
 
-           }
-        );
-        alert(users)
-    }
+    // const [isLoggedIn, setLoggedIn] = useState(false);
+
+    const {value:email, bind:bindEmail, reset:resetEmail} = useInput('');
+    const {value:password, bind:bindPassword, reset:resetPassword} = useInput('');
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        let state = {
+            email: email,
+            password: password
+        };
+        let url = "http://localhost:3001/login";
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(state)
+        }).then(function (response) {
+            // console.log(response.status);
+            // console.log(state);
+            if (response.status === 200) {
+                console.log("Logged in")
+            }
+            else {
+                console.log("Bad password or email")
+            }
+            // return response.json();
+        });
+    };
 
 
     const classes = useStyles();
@@ -86,7 +114,7 @@ export default function LogIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleLogin}>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -97,6 +125,7 @@ export default function LogIn(props) {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        {...bindEmail}
                     />
                     <TextField
                         variant="outlined"
@@ -108,6 +137,7 @@ export default function LogIn(props) {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        {...bindPassword}
                     />
                     <Button
                         type="submit"
