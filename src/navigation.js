@@ -14,6 +14,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import {ReactComponent as RebelIcon} from "./icons/rebel.svg";
 import {ReactComponent as EvilIcon} from "./icons/evil2.svg";
 import {Link} from "react-router-dom";
+import { changeDarkMode } from "./actions/creators";
+import { connect } from'react-redux';
+import DarkMode from "./darkmode";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
         width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: 'auto',
-        },
         marginRight: "12vw",
         marginLeft: "10vw",
     },
@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     },
     inputInput: {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        paddingLeft: '4vw',
+        paddingRight: '1vw',
         transition: theme.transitions.create('width'),
         width: '100%',
     },
@@ -58,7 +58,7 @@ function LoginButton(props) {
     return(
         <Tooltip title="Login">
         <MenuItem size="small" aria-label="Login">
-            {props.darkMode ?
+            {props.isDarkMode ?
                 <SvgIcon component={EvilIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: 45}} /> :
                 <SvgIcon component={LoginIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: 45}}/>
             }
@@ -67,35 +67,18 @@ function LoginButton(props) {
     )
 }
 
-function DarkMode(props) {
-    const [darkMode, setDarkMode] = useState(false);
-    function handleClick() {
-        setDarkMode(!darkMode);
-        props.onClick();
-    }
-    return(
-        <Tooltip title="Dark Mode">
-            <MenuItem size="small" aria-label="Dark Mode" onClick={handleClick}>
-                {darkMode ?
-                    <SvgIcon component={RebelIcon} viewBox={"0, 0, 300, 300"} style={{fontSize: 45}}/> :
-                    <SvgIcon component={DarkIcon} viewBox={"0, 0, 600, 600"} style={{fontSize: 45}}/>
-                }
-            </MenuItem>
-        </Tooltip>
-    )
-}
+
 
 
 export default function Navigation(props) {
     const classes = useStyles();
-    const [darkMode, setDarkMode] = useState(false);
-    function handleDark() {
-        setDarkMode(!darkMode);
-        console.log(darkMode);
-        props.onClickDark()
-    }
+    // const [isDarkMode, setDarkMode] = useState(false);
+    // function handleDark() {
+    //     setDarkMode(!isDarkMode);
+    //     props.onClickDark()
+    // }
     return (
-        <AppBar position="static" className={classes.appBar} style={{background: darkMode ? "#8b0000" : "#4791db"}}>
+        <AppBar position="static" className={classes.appBar} style={{background: props.isDarkMode ? "#8b0000" : "#4791db"}}>
             <Toolbar>
                 <SvgIcon component={LegoLogo}  viewBox={"0, 0, 640, 640"} style={{fontSize: 50, marginRight: "0.5vw"}}/>
                 <Typography variant="h6">
@@ -114,8 +97,9 @@ export default function Navigation(props) {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </div>
-                <Link to='login'><LoginButton darkMode={darkMode}/></Link>
-                <DarkMode onClick={handleDark}/>
+                <Link to='login'><LoginButton isDarkMode={props.isDarkMode}/></Link>
+                {/*<DarkMode onClick={handleDark}/>*/}
+                <DarkMode/>
             </Toolbar>
         </AppBar>
     )

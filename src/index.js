@@ -12,15 +12,17 @@ import {ReactComponent as NewsIcon} from "./icons/news.svg";
 import {ReactComponent as HistoryIcon} from "./icons/history.svg";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import MainBlock from "./mainBlock";
-import Tops from "./tops"
-import LogIn from "./login";
+import Tops from "./tops";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
     Link
 } from "react-router-dom";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import {Provider, useSelector, useDispatch} from 'react-redux';
+import { createStore } from'redux';
+// import rootReducer from'./reducers/root';
+import allReducers from "./reducers";
+import { changeDark } from "./actions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,11 +50,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-// function ProfileButton() {
-//     return(
-//         <Button startIcon={<SvgIcon component={ProfileIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: "3vmax"}}/>} style={{fontSize: "1vmax"}}>Profile</Button>
-//     )
-// }
 
 function LeftMenu(props) {
     return (
@@ -61,11 +58,9 @@ function LeftMenu(props) {
                 orientation="vertical"
                 color="primary"
                 className={props.styles}
-                color={props.darkMode ? "secondary": "primary"}
+                color={props.isDarkMode ? "secondary": "primary"}
             >
-                    {/*<Link to='profile'>*/}
                 <Button startIcon={<SvgIcon component={ProfileIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: "3vmax"}}/>} style={{fontSize: "1vmax"}} component={Link} to={'profile'}>Profile</Button>
-                    {/*</Link>*/}
                 <Button startIcon={<SvgIcon component={CollectionIcon} viewBox={"0, 0, 515, 515"} style={{fontSize: "3vmax"}}/>} style={{fontSize: "1vmax"}} component={Link} to={'collect'}>Collect</Button>
                 <Button startIcon={<SvgIcon component={NewsIcon} viewBox={"0, 0, 550, 550"} style={{fontSize: "3vmax"}}/>} style={{fontSize: "1vmax"}}>Latest</Button>
                 <Button startIcon={<SvgIcon component={HistoryIcon} viewBox={"0, 0, 60, 60"} style={{fontSize: "3vmax"}}/>} style={{fontSize: "1vmax"}} component={Link} to={'history'}>History</Button>
@@ -75,25 +70,31 @@ function LeftMenu(props) {
     )
 }
 
+const store = createStore(allReducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 function App() {
     const classes = useStyles();
-    const [darkMode, setDarkMode] = useState(false);
+    // const [isDarkMode, setDarkMode] = useState(false);
+    const isDarkMode = useSelector(state => state.isDarkMode);
+
     const theme = createMuiTheme({
         palette: {
-            type: darkMode ? "dark" : "light",
+            type: isDarkMode ? "dark" : "light",
         },
     });
-    // const lightTheme = createMuiTheme({});
 
     return (
         <Router>
             <ThemeProvider theme={theme}>
                 <Paper style={{height: "100vh"}}>
                     <Grid container direction="column">
-                        <Grid item> <Navigation onClickDark={() => setDarkMode(!darkMode)} darkMode={darkMode}/></Grid>  {/*onClickDark={setDarkMode(!darkMode)}*/}
+                        {/*<Grid item> <Navigation onClickDark={() => setDarkMode(!isDarkMode)} isDarkMode={isDarkMode}/></Grid>*/}
+                        <Grid item> <Navigation isDarkMode={isDarkMode}/></Grid>
+
                         <Grid container justify="center">
 
-                            <Grid item> <LeftMenu styles={classes.menu} darkMode={darkMode}/></Grid>
+                            <Grid item> <LeftMenu styles={classes.menu} isDarkMode={isDarkMode}/></Grid>
                             <Grid item> <MainBlock /></Grid>
                             <Grid item> <Tops styles={classes.menu2}/></Grid>
                         </Grid>
@@ -102,21 +103,12 @@ function App() {
             </ThemeProvider>
         </Router>
 )
-    //     // <div className={classes.root}>
-    //         {/*<Grid>*/}
-    //         {/*    <Navigation />*/}
-    //         {/*</Grid>*/}
-    //         {/*<Grid container justify="center">*/}
-    //         {/*    <LeftMenu styles={classes.menu}/>*/}
-    //         {/*    <Paper className={classes.paper}  elevation={3}/>*/}
-    //         {/*    <Menu styles={classes.menu2}/>*/}
-    //         {/*</Grid>*/}
-    //     {/*</div>*/}
-    // // );
 }
 
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

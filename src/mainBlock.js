@@ -4,10 +4,8 @@ import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import FigureCard from "./figureCard";
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 import LogIn from "./login";
 import Register from "./register";

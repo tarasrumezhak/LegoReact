@@ -1,0 +1,4 @@
+const CHANGE_DARK_MODE = 'CHANGE_DARK_MODE';
+
+
+export {CHANGE_DARK_MODE};
