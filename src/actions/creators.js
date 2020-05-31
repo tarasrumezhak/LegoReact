@@ -1,9 +1,9 @@
-import { CHANGE_DARK_MODE} from "./types";
+import { CHANGE_DARK_MODE, SET_FIGURES, SET_NEWS} from "./types";
 
 const  changeDarkMode = (isDarkMode) => ({type: CHANGE_DARK_MODE, isDarkMode});
 
-// let action = changeDarkMode(false);
+const setFigures = (figures) => ({type: SET_FIGURES, figures});
 
-export { changeDarkMode };
+const setNews = (news) => ({type: SET_NEWS, news});
 
-// store.dispatch(action);
+export { changeDarkMode, setFigures, setNews};

@@ -22,14 +22,9 @@ const useStyles = makeStyles({
 });
 
 export default function FigureCard(props) {
-    // const [state, setState] = React.useState({
-    //     checked: false
-    // });
     const [checked, setChecked] = React.useState(false);
     const classes = useStyles();
-    // const handleChange = (event) => {
-    //     setState({ ...state, [event.target.name]: event.target.checked });
-    // };
+
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
@@ -40,7 +35,6 @@ export default function FigureCard(props) {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    // image={require("./images/shower.jpg")}
                     image={props.image}
                     title="Minifig"
                 />
@@ -61,9 +55,6 @@ export default function FigureCard(props) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                {/*<Button size="small" color="primary">*/}
-                {/*    Learn More*/}
-                {/*</Button>*/}
                 <Button size="small" color="primary" component={Link} to={`figures/${props.name.replace(' ', '_').toLowerCase()}`}>
                     Learn More
                 </Button>

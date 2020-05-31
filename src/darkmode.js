@@ -3,17 +3,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import {ReactComponent as RebelIcon} from "./icons/rebel.svg";
 import {ReactComponent as DarkIcon} from "./icons/empire.svg";
-import {changeDarkMode} from "./actions/creators";
 import {connect, useDispatch} from "react-redux";
 import React from "react";
 import {changeDark} from "./actions";
 
 function DarkMode(props) {
-    // const [isDarkMode, setDarkMode] = useState(false);
-    // function handleClick() {
-    //     setDarkMode(!isDarkMode);
-    //     props.onClick();
-    // }
     const dispatch = useDispatch();
     return(
         <Tooltip title="Dark Mode">
@@ -32,5 +26,4 @@ function DarkMode(props) {
 }
 
 const mapStateToProps = (state) => ({isDarkMode: state.isDarkMode});
-const mapDispatchToProps = (dispatch) => ({changeDarkMode: (isDarkMode) => dispatch(changeDarkMode(isDarkMode))});
-export default connect(mapStateToProps, mapDispatchToProps)(DarkMode);
+export default connect(mapStateToProps, null)(DarkMode);

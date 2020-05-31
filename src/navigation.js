@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,14 +8,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { ReactComponent as LegoLogo } from './icons/lego-2-logo-svg-vector.svg'
 import { ReactComponent as LoginIcon } from './icons/emoticon.svg'
-import {ReactComponent as DarkIcon} from "./icons/empire.svg";
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
-import {ReactComponent as RebelIcon} from "./icons/rebel.svg";
 import {ReactComponent as EvilIcon} from "./icons/evil2.svg";
 import {Link} from "react-router-dom";
-import { changeDarkMode } from "./actions/creators";
-import { connect } from'react-redux';
 import DarkMode from "./darkmode";
 
 
@@ -72,11 +68,7 @@ function LoginButton(props) {
 
 export default function Navigation(props) {
     const classes = useStyles();
-    // const [isDarkMode, setDarkMode] = useState(false);
-    // function handleDark() {
-    //     setDarkMode(!isDarkMode);
-    //     props.onClickDark()
-    // }
+
     return (
         <AppBar position="static" className={classes.appBar} style={{background: props.isDarkMode ? "#8b0000" : "#4791db"}}>
             <Toolbar>
@@ -98,7 +90,6 @@ export default function Navigation(props) {
                     />
                 </div>
                 <Link to='login'><LoginButton isDarkMode={props.isDarkMode}/></Link>
-                {/*<DarkMode onClick={handleDark}/>*/}
                 <DarkMode/>
             </Toolbar>
         </AppBar>
