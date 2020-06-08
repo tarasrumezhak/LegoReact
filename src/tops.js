@@ -8,12 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {Link } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
+    panel: {
+        width: theme.spacing(25)
+    }
 }));
 
 
@@ -33,7 +31,7 @@ export default function Tops(props) {
     return (
         <Paper elevation={0} className={props.styles}>
             <div className={classes.root}>
-                <ExpansionPanel>
+                <ExpansionPanel className={classes.panel}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -56,7 +54,7 @@ export default function Tops(props) {
 
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                <ExpansionPanel>
+                <ExpansionPanel className={classes.panel}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2a-content"

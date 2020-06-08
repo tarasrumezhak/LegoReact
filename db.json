@@ -65,5 +65,61 @@
       "series": 19,
       "price": 10
     }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "name": "Stormtrooper Helmet",
+      "text": "Lego introduced new stormtrooper helmet",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 2,
+      "name": "Wooow",
+      "text": "This is the last homework",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 3,
+      "name": "New cool thing",
+      "text": "Lego introduced new cool thing",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 4,
+      "name": "Superduper crazy Brick",
+      "text": "Superduper crazy Brick has been just released",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 5,
+      "name": "Minifigures collection 17",
+      "text": "This is very cool",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 6,
+      "name": "New cool thing",
+      "text": "Lego introduced new cool thing",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 7,
+      "name": "Stormtrooper Helmet",
+      "text": "Lego introduced new stormtrooper helmet",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 8,
+      "name": "Wooow",
+      "text": "This is the last homework",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    },
+    {
+      "id": 9,
+      "name": "New cool thing",
+      "text": "Lego introduced new cool thing",
+      "url": "https://www.lego.com/en-us/product/stormtrooper-helmet-75276"
+    }
   ]
 }

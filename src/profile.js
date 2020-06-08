@@ -7,27 +7,13 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from "@material-ui/core/Avatar";
 import {ReactComponent as BatmanIcon} from "./icons/batman.svg";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        // display: 'flex',
-        // minWidth: 275,
-        // alignItems: 'absolute',
-        // justify: 'center',
-        // position: 'center',
-        // height: "70vh",
-        // width: "30vw",
-        // marginTop: "2vh",
-        // marginLeft: "5vw",
     },
     content: {
         display: 'flex',
@@ -54,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProfileCard() {
     const classes = useStyles();
-    // const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root} variant="elevation" elevation={0}>

@@ -5,21 +5,16 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {Link, useRouteMatch} from "react-router-dom";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { ObjViewer } from 'react-obj-viewer'
 
 
 const useStyles = makeStyles({
     root: {
-        // maxWidth: 345,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -35,14 +30,12 @@ export default function FigurePage(props) {
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
-    let match = useRouteMatch();
 
     return (
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    // image={require("./images/shower.jpg")}
                     image={props.image}
                     title="Minifig"
                 />
@@ -78,9 +71,6 @@ export default function FigurePage(props) {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                {/*<Button size="small" color="primary" component={Link} to={`${match.url}/${props.name.replace(' ', '_').toLowerCase()}`}>*/}
-                {/*    Learn More*/}
-                {/*</Button>*/}
             </CardActions>
         </Card>
     );
