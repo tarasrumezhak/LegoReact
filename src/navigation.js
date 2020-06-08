@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import {createMuiTheme, fade, makeStyles} from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { ReactComponent as LegoLogo } from './icons/lego-2-logo-svg-vector.svg'
@@ -13,13 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import {ReactComponent as RebelIcon} from "./icons/rebel.svg";
 import {ReactComponent as EvilIcon} from "./icons/evil2.svg";
-// import {green, red} from "@material-ui/core/colors";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
         },
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            // marginLeft: theme.spacing(1),
-            // marginLeft: "10vw",
             width: 'auto',
         },
         marginRight: "12vw",
@@ -56,16 +48,9 @@ const useStyles = makeStyles((theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
     },
 }));
 

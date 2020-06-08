@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "email": "rumezhak2@ucu.edu.ua",
+      "password": "$2a$10$D6XkIboRzD/LhNVNfN0sde1nwuVRudWlVSRI3r3QzpsmBDngxIcMK",
+      "first_name": "Taras",
+      "last_name": "Hello",
+      "id": 1
+    },
+    {
+      "email": "rumezhak3@ucu.edu.ua",
+      "password": "$2a$10$2GgKePBQkAkf9n.hAWq2QODkRXOfsTDuJplASKfLZR3wnlgU1Nxwq",
+      "first_name": "Taras",
+      "last_name": "briskster",
+      "id": 2
+    },
+    {
+      "email": "rumezhak4@ucu.edu.ua",
+      "password": "$2a$10$z1y1eFJVBr3YR6C2NckKXu1tUBJaQ/mLB1LfQWrY2Fqf2HQwTihQO",
+      "first_name": "taras",
+      "last_name": "brickster",
+      "id": 3
+    }
+  ],
+  "figures": [
+    {
+      "id": 1,
+      "name": "Shower Guy",
+      "photo": "./images/shower.jpg",
+      "series": 19,
+      "price": 6.9
+    },
+    {
+      "id": 2,
+      "name": "Girl Hacker",
+      "photo": "./images/hacker.jpg",
+      "series": 19,
+      "price": 3.8
+    },
+    {
+      "id": 3,
+      "name": "Adventurer",
+      "photo": "./images/adventurer.png",
+      "series": 19,
+      "price": 2.8
+    },
+    {
+      "id": 4,
+      "name": "Player",
+      "photo": "./images/player.jpg",
+      "series": 19,
+      "price": 1.6
+    },
+    {
+      "id": 5,
+      "name": "Programmer",
+      "photo": "./images/programmer.jpg",
+      "series": 19,
+      "price": 5.8
+    },
+    {
+      "id": 6,
+      "name": "Brick Man",
+      "photo": "./images/minifigure.jpg",
+      "series": 19,
+      "price": 10
+    }
+  ]
+}

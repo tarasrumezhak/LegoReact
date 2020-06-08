@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -53,7 +53,55 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function LogIn() {
+export default function LogIn(props) {
+    const useInput = initialValue => {
+        const [value, setValue] = useState(initialValue);
+
+        return {
+            value,
+            setValue,
+            reset: () => setValue(""),
+            bind: {
+                value,
+                onChange: event => {
+                    setValue(event.target.value);
+                }
+            }
+        };
+    };
+
+    // const [isLoggedIn, setLoggedIn] = useState(false);
+
+    const {value:email, bind:bindEmail, reset:resetEmail} = useInput('');
+    const {value:password, bind:bindPassword, reset:resetPassword} = useInput('');
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        let state = {
+            email: email,
+            password: password
+        };
+        let url = "http://localhost:3001/login";
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(state)
+        }).then(function (response) {
+            // console.log(response.status);
+            // console.log(state);
+            if (response.status === 200) {
+                console.log("Logged in")
+            }
+            else {
+                console.log("Bad password or email")
+            }
+            // return response.json();
+        });
+    };
+
+
     const classes = useStyles();
 
     return (
@@ -61,15 +109,12 @@ export default function LogIn() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    {/*<LockOutlinedIcon />*/}
-                    {/*<AvatarIcon/>*/}
-                    {/*<SvgIcon component={BatmanIcon} viewBox={"0, 0, 500, 500"} style={{fontSize: 45}} /> :*/}
                     <BatmanIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleLogin}>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -80,6 +125,7 @@ export default function LogIn() {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        {...bindEmail}
                     />
                     <TextField
                         variant="outlined"
@@ -91,26 +137,19 @@ export default function LogIn() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        {...bindPassword}
                     />
-                    {/*<FormControlLabel*/}
-                    {/*    control={<Checkbox value="remember" color="primary" />}*/}
-                    {/*    label="Remember me"*/}
-                    {/*/>*/}
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        // onClick={handleLogin}
                     >
                         Log In
                     </Button>
                     <Grid container>
-                        {/*<Grid item xs>*/}
-                            {/*<Link href="#" variant="body2">*/}
-                            {/*    Forgot password?*/}
-                            {/*</Link>*/}
-                        {/*</Grid>*/}
                         <Grid item>
                             <Link to='register'>
                                 {"Don't have an account? Sign Up"}

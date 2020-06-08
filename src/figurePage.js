@@ -10,6 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {Link, useRouteMatch} from "react-router-dom";
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ObjViewer } from 'react-obj-viewer'
+
 
 const useStyles = makeStyles({
     root: {
@@ -19,19 +25,13 @@ const useStyles = makeStyles({
         alignItems: 'center',
     },
     media: {
-        height: 240,
+        height: '50vh',
     },
 });
 
-export default function FigureCard(props) {
-    // const [state, setState] = React.useState({
-    //     checked: false
-    // });
+export default function FigurePage(props) {
     const [checked, setChecked] = React.useState(false);
     const classes = useStyles();
-    // const handleChange = (event) => {
-    //     setState({ ...state, [event.target.name]: event.target.checked });
-    // };
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
@@ -63,12 +63,24 @@ export default function FigureCard(props) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                {/*<Button size="small" color="primary">*/}
+
+                <ExpansionPanel>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography className={classes.heading}>Learn more</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Typography>
+                           This is very cool minifigure!
+                        </Typography>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                {/*<Button size="small" color="primary" component={Link} to={`${match.url}/${props.name.replace(' ', '_').toLowerCase()}`}>*/}
                 {/*    Learn More*/}
                 {/*</Button>*/}
-                <Button size="small" color="primary" component={Link} to={`figures/${props.name.replace(' ', '_').toLowerCase()}`}>
-                    Learn More
-                </Button>
             </CardActions>
         </Card>
     );
